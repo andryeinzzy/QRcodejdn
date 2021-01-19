@@ -8,23 +8,37 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js"></script>
     <script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
     
+    <style>
+		.a:hover {
+			color:#CCC;
+			cursor:pointer;
+		}
+		.a {
+			margin-right:20px;
+			font-size:70px;
+			position:absolute;
+			right:20px;
+		}
+	</style>
+    
 	</head>
   
 	<body>
     
 		<div id="app" style="margin:20px;">
+        	<img id="bgwifi" src="https://1.bp.blogspot.com/-ZJ0uA2-tilU/X_nzcqnUl2I/AAAAAAAAGKU/AvxzYg_80KImxqtPR5CS3iYeoUtdYIV9gCLcBGAsYHQ/s465/logo.png" style="width:200px; position:absolute;"/>
         
 			<div class="sidebar">
       
 				<section class="cameras">
-					<ul>
-						<li v-if="cameras.length === 0" class="empty" style="list-style:none;">No cameras found</li>
+					<ul style="margin:0; padding:0;">
+						<li v-if="cameras.length === 0" class="empty" style="list-style:none;"> </li>
 						<li v-for="camera in cameras" style="list-style:none;">
 							<span v-if="camera.id == activeCameraId" :title="formatName(camera.name)" class="active">
                             </span>
 							<span v-if="camera.id != activeCameraId" :title="formatName(camera.name)">
-                            	<a @click.stop="selectCamera(camera)">
-                        			<i class="fa fa-camera" style="font-size:70px;"></i>
+                            	<a class="a" @click.stop="selectCamera(camera)">
+                        			<i class="fa fa-camera"></i>
                         		</a>
                             </span>
 						</li>
@@ -44,10 +58,18 @@
 			</div>
             
 			<div class="preview-container">
-				<video id="preview" style="width:100%; height:auto;"></video>
+				<video id="preview" style="width:100%; height:auto;margin-top:80px;"></video>
 			</div>
       
     </div>
+            
+	<footer>
+		<div style="text-align:center; margin-top:20px;">
+			&copy; 2020 <br/> Powered by <a target="new" href="https://nusantara.net.id/">PT. Java Digital Nusantara</a>
+			<span class="sep"> <br/> </span>
+			Designed by <a target="new" href="https://www.facebook.com/1808ANDRI" rel="designer">G.net</a>
+		</div>
+	</footer>
     
     
     
@@ -64,6 +86,7 @@
     var self = this;
     self.scanner = new Instascan.Scanner({ video: document.getElementById('preview'), scanPeriod: 5 });
     self.scanner.addListener('scan', function (content, image) {
+		window.location.href = content;
       self.scans.unshift({ date: +(Date.now()), content: content });
     });
     Instascan.Camera.getCameras().then(function (cameras) {
