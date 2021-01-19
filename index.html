@@ -20,14 +20,15 @@
 					<ul>
 						<li v-if="cameras.length === 0" class="empty" style="list-style:none;">No cameras found</li>
 						<li v-for="camera in cameras" style="list-style:none;">
-							<span v-if="camera.id != activeCameraId" :title="formatName(camera.name)" class="active">
-                            	<a @click.stop="selectCamera(camera)">
+                            <a @click.stop="selectCamera(camera)">
                         			<i class="fa fa-camera" style="font-size:70px;"></i>
-                                </a>
-                            </span>
-							<span v-if="camera.id == activeCameraId" :title="formatName(camera.name)" hidden="">
+							<span v-if="camera.id == activeCameraId" :title="formatName(camera.name)" class="active" hidden="">
                             	{{ formatName(camera.name) }}
                             </span>
+							<span v-if="camera.id != activeCameraId" :title="formatName(camera.name)" hidden="">
+                            	{{ formatName(camera.name) }}
+                            </span>
+                        	</a>
 						</li>
 					</ul>
 				</section>
