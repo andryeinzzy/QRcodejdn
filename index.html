@@ -5,6 +5,19 @@
     	<title>QR Code JDN</title>
     	<link rel="icon" type="image/png" href="img/favicon.png">
     
+                            	<style>
+									.blink {
+										animation: blinker 0.500s linear infinite;
+										text-align:center;
+										color:#ed1c24;
+										font-weight:bold;
+										font-size:14px;
+									}
+									@keyframes blinker {
+										50% { opacity: 0.1;
+										}
+									}
+								</style>
     </head>
     <body>
     
@@ -12,6 +25,8 @@
         	<a href="http://jdn.net"><img id="bgwifi" src="img/logo.png" style="width:200px; position:absolute;"/></a>
     
         	<select style="position:absolute; right:20px; margin-top:20px;"></select>
+            
+            <span class="blink" style="position:absolute; right:20px; margin-top:64px;">Jika kamera tidak aktif, Gunakan Google Chrome...</span>
             
         	<canvas style="width:100%;height:auto;margin-top:80px;"></canvas>
             
