@@ -12,29 +12,29 @@
 }
 
 .laser-leftTop {
-    top: 15%;
-    left: 15%;
+    top: 25%;
+    left: 20%;
     border-top: solid #ffffff 5px;
     border-left: solid #ffffff 5px;
 }
 
 .laser-leftBottom {
-    bottom: 15%;
-    left: 15%;
+    bottom: 25%;
+    left: 20%;
     border-bottom: solid #ffffff 5px;
     border-left: solid #ffffff 5px;
 }
 
 .laser-rightTop {
-    top: 15%;
-    right: 15%;
+    top: 25%;
+    right: 20%;
     border-top: solid #ffffff 5px;
     border-right: solid #ffffff 5px;
 }
 
 .laser-rightBottom {
-    bottom: 15%;
-    right: 15%;
+    bottom: 25%;
+    right: 20%;
     border-bottom: solid #ffffff 5px;
     border-right: solid #ffffff 5px;
 }
