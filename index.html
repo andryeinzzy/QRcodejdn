@@ -15,10 +15,6 @@
 										font-weight:bold;
 										font-size:14px;
 									}
-									@keyframes blinker {
-										50% { opacity: 0.1;
-										}
-									}
 									.blink2 {
 										animation: blinker 1.500s linear infinite;
 										text-align:center;
@@ -42,16 +38,16 @@
             </span>
             
             <div class="well" style="position:relative; display:inline-block; margin-top:85px; margin-bottom:0; width:100%;">
-            	<span style="position:absolute; padding:0 10% 0 10%; text-align:center; font-size:17px; color:#ffffff; bottom:70px; z-index:5;">
-            		Sejajarkan kode QR di dalam kotak untuk pemindaian<br/>otomatis.
+            	<span style="position:absolute; text-align:center; font-size:17px; color:#ffffff; bottom:25px; right:25px; z-index:5;">
+            		Sejajarkan kode QR<br/>di dalam kotak<br/>untuk pemindaian<br/>otomatis.
             	</span>
             
         		<canvas id="webcodecam-canvas" style="width:100%;height:auto;"></canvas>
             
-                <div class="scanner-laser laser-rightBottom blink2" style="opacity: 0.5;"></div>
-                <div class="scanner-laser laser-rightTop blink2" style="opacity: 0.5;"></div>
-                <div class="scanner-laser laser-leftBottom blink2" style="opacity: 0.5;"></div>
-                <div class="scanner-laser laser-leftTop blink2" style="opacity: 0.5;"></div>
+                <div class="scanner-laser laser-rightBottom blink2"></div>
+                <div class="scanner-laser laser-rightTop blink2"></div>
+                <div class="scanner-laser laser-leftBottom blink2"></div>
+                <div class="scanner-laser laser-leftTop blink2"></div>
             </div>
             
         	<ul></ul>
