@@ -1,0 +1,47 @@
+.well {
+    position: relative;
+    display: inline-block;
+}
+
+.scanner-laser {
+    position: absolute;
+    margin: 40px;
+    height: 30px;
+    width: 30px;
+    /*opacity: 0.5;*/
+}
+
+.laser-leftTop {
+    top: 25%;
+    left: 20%;
+    border-top: solid #ffffff 15px;
+    border-left: solid #ffffff 15px;
+}
+
+.laser-leftBottom {
+    bottom: 25%;
+    left: 20%;
+    border-bottom: solid #ffffff 15px;
+    border-left: solid #ffffff 15px;
+}
+
+.laser-rightTop {
+    top: 25%;
+    right: 20%;
+    border-top: solid #ffffff 15px;
+    border-right: solid #ffffff 15px;
+}
+
+.laser-rightBottom {
+    bottom: 25%;
+    right: 20%;
+    border-bottom: solid #ffffff 15px;
+    border-right: solid #ffffff 15px;
+}
+
+#webcodecam-canvas {
+    background-color: #272822;
+}
+#scanned-QR{
+    word-break: break-word;
+}

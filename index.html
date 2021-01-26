@@ -1,11 +1,18 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
+<!doctype html>
+<html lang="en-US" xmlns:fb="https://www.facebook.com/2008/fbml" xmlns:addthis="https://www.addthis.com/help/api-spec"  prefix="og: http://ogp.me/ns#" class="no-js">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     	<title>QR Code JDN</title>
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/style.css" rel="stylesheet">
-    	<link rel="icon" type="image/png" href="img/favicon.png">
+    
+        <link href="style.css" rel="stylesheet">
+    	<link rel="icon" type="png" href="img/favicon.png">
+    
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+		<script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
     
                             	<style>
 									.blink {
@@ -26,31 +33,37 @@
 										}
 									}
 								</style>
-    </head>
-    <body style="margin:0; padding:0">
+	</head>
+
+	<body style="margin:0; padding:0">
     
-        	<a href="http://jdn.id"><img id="bgwifi" src="img/logo.png" style="width:200px; position:absolute;"/></a>
-    
-        	<select style="position:absolute; right:20px; margin-top:20px;"></select>
+		<a href="http://jdn.id"><img id="bgwifi" src="logo.png" style="width:200px; position:absolute;"/></a>
+                
+		<div class="btn-group btn-group-toggle mb-5" data-toggle="buttons" style="position:absolute; right:20px; margin-top:20px;">
+			<label class="btn btn-primary active">
+				<input type="radio" name="options" value="1" autocomplete="off" checked> Front Camera
+            </label>
+			<label class="btn btn-secondary">
+				<input type="radio" name="options" value="2" autocomplete="off"> Back Camera
+			</label>
+		</div>
             
-            <span class="blink" style="position:absolute; right:20px; margin-top:64px;">
-            	Jika kamera tidak aktif, Gunakan Google Chrome.
+		<span class="blink" style="position:absolute; right:20px; margin-top:64px;">
+			Jika kamera tidak aktif, Gunakan Google Chrome.
+		</span>
+            
+		<div class="well" style="position:relative; display:inline-block; margin-top:85px; margin-bottom:0; width:100%;">
+			<span style="position:absolute; text-align:center; font-size:17px; color:#ffffff; bottom:25px; right:25px; z-index:5;">
+				Sejajarkan kode QR<br/>di dalam kotak<br/>untuk pemindaian<br/>otomatis.
             </span>
             
-            <div class="well" style="position:relative; display:inline-block; margin-top:85px; margin-bottom:0; width:100%;">
-            	<span style="position:absolute; text-align:center; font-size:17px; color:#ffffff; bottom:25px; right:25px; z-index:5;">
-            		Sejajarkan kode QR<br/>di dalam kotak<br/>untuk pemindaian<br/>otomatis.
-            	</span>
+			<video id="preview" class="p-3" style="width:100%;height:auto; background-color:#f5f5f5; border:1px solid #e3e3e3;"></video>
             
-        		<canvas id="webcodecam-canvas" style="width:100%;height:auto;"></canvas>
-            
-                <div class="scanner-laser laser-rightBottom blink2"></div>
-                <div class="scanner-laser laser-rightTop blink2"></div>
-                <div class="scanner-laser laser-leftBottom blink2"></div>
-                <div class="scanner-laser laser-leftTop blink2"></div>
-            </div>
-            
-        	<ul></ul>
+			<div class="scanner-laser laser-rightBottom blink2"></div>
+			<div class="scanner-laser laser-rightTop blink2"></div>
+			<div class="scanner-laser laser-leftBottom blink2"></div>
+			<div class="scanner-laser laser-leftTop blink2"></div>
+		</div>
             
 	<footer>
 		<div style="text-align:center; margin-top:20px; margin-bottom:20px;">
@@ -59,29 +72,40 @@
 			Designed by <a target="new" href="https://www.facebook.com/1808ANDRI" rel="designer">G.net</a>
 		</div>
 	</footer>
-        
-        <script type="text/javascript" src="js/jquery.js"></script>
-        <script type="text/javascript" src="js/qrcodelib.js"></script>
-        <script type="text/javascript" src="js/webcodecamjquery.js"></script>
-        
-        <script type="text/javascript">
-            var arg = {
-                resultFunction: function(result) {
-				window.location.href = result.code;
-                    $('body').append($('<li>' + result.format + ': ' + result.code + '</li>'));
-                }
-            };
-            var decoder = $("canvas").WebCodeCamJQuery(arg).data().plugin_WebCodeCamJQuery;
-            decoder.buildSelectMenu("select");
-            decoder.play();
-            /*  Without visible select menu
-                decoder.buildSelectMenu(document.createElement('select'), 'environment|back').init(arg).play();
-            */
-            $('select').on('change', function(){
-                decoder.stop().play();
-            });
-        </script>
-        
-        
-    </body>
+                
+	<script type="text/javascript">
+		var scanner = new Instascan.Scanner({ video: document.getElementById('preview'), scanPeriod: 5, mirror: false });
+		scanner.addListener('scan',function(content){
+			alert(content);
+			//window.location.href=content;
+		});
+		Instascan.Camera.getCameras().then(function (cameras){
+			if(cameras.length>0){
+				scanner.start(cameras[0]);
+				$('[name="options"]').on('change',function(){
+					if($(this).val()==1){
+						if(cameras[0]!=""){
+							scanner.start(cameras[0]);
+						}else{
+							alert('No Front camera found!');
+						}
+					}else if($(this).val()==2){
+						if(cameras[1]!=""){
+							scanner.start(cameras[1]);
+						}else{
+							alert('No Back camera found!');
+						}
+					}
+				});
+				}else{
+					console.error('No cameras found.');
+					alert('No cameras found.');
+				}
+			}).catch(function(e){
+				console.error(e);
+				alert(e);
+		});
+	</script>
+	
+</body>
 </html>
