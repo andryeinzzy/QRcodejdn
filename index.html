@@ -32,7 +32,7 @@
     
         <a href="http://jdn.id"><img id="bgwifi" src="img/logo.png" style="width:230px; position:absolute; margin-left:20px;"/></a>
         
-        <select title="Choose one of the following..." style="position:absolute; right:20px; margin-top:20px; height:40px; cursor:pointer;">
+        <select title="Choose one of the following..." style="position:absolute; right:20px; margin-top:20px; height:40px; cursor:pointer; font-size:15px;">
 			<optgroup label="---Pilih Kamera---"></optgroup>
         </select>
   
@@ -75,7 +75,7 @@
                 }
             };
             var decoder = $("canvas").WebCodeCamJQuery(arg).data().plugin_WebCodeCamJQuery;
-            decoder.buildSelectMenu("optgroup");
+            decoder.buildSelectMenu("select");
             decoder.play();
             /*  Without visible select menu
                 decoder.buildSelectMenu(document.createElement('select'), 'environment|back').init(arg).play();
