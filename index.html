@@ -63,8 +63,6 @@
 			<div class="scanner-laser laser-leftTop blink2"></div>
 		</div>
             
-		<ul></ul>
-            
 	<footer>
 		<div style="text-align:center; margin-top:20px; margin-bottom:20px;">
 			&copy; 2020 <br/> Powered by <a target="new" href="https://nusantara.net.id/">PT. Java Digital Nusantara</a>
@@ -82,9 +80,6 @@
             var arg = {
                 resultFunction: function(result) {
 					window.location.href = result.code;
-                	var aChild = document.createElement('li');
-                	aChild[txt] = result.format + ': ' + result.code;
-                    document.querySelector('body').appendChild(aChild);
                 }
             };
 			
