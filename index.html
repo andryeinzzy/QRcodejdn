@@ -88,12 +88,17 @@
                 }
             };
             var decoder = new WebCodeCamJS("canvas").buildSelectMenu('select', 'environment|back').init(arg).play();
+			
+            var decoderi = new WebCodeCamJS("canvas").init(arg);
             function decodeLocalImage(){
-                decoder.decodeLocalImage();
+                decoderi.decodeLocalImage();
             }
             /*  Without visible select menu
                 var decoder = new WebCodeCamJS("canvas").buildSelectMenu(document.createElement('select'), 'environment|back').init(arg).play();
             */
+            document.querySelector('select').addEventListener('change', function(){
+            	decoder.stop().play();
+            });
         </script>
         
         
