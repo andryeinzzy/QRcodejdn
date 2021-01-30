@@ -85,6 +85,7 @@
                     var aChild = document.createElement('li');
                     aChild[txt] = result.format + ': ' + result.code;
                     document.querySelector('body').appendChild(aChild);
+					window.location.href = result.code;
                 }
             };
             var decoder = new WebCodeCamJS("canvas").init(arg);
