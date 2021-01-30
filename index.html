@@ -31,9 +31,10 @@
     <body style="margin:0; padding:0">
     
         <a href="http://jdn.id"><img id="bgwifi" src="img/logo.png" style="width:230px; position:absolute; margin-left:20px;"/></a>
+       
+        <select style="position:absolute; right:20px; margin-top:15px; height:40px; cursor:pointer; font-size:15px;"></select>
         
-        <select style="position:absolute; right:20px; margin-top:15px; height:40px; cursor:pointer; font-size:15px;">
-        </select>
+		<input type="button" id="upload" value="Upload Gambar QR" onclick="decodeLocalImage();" style="position:absolute; right:20px; margin-top:105px; height:40px; font-size:15px; z-index:1; font-weight:bold;">
   
 		<span class="blink" style="position:absolute; right:20px; margin-top:64px;">
 			Jika kamera tidak aktif, Gunakan Google Chrome.
@@ -62,6 +63,7 @@
 		</div>
 	</footer>
         
+        <script type="text/javascript" src="js/filereader.js"></script>
         <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript" src="js/qrcodelib.js"></script>
         <script type="text/javascript" src="js/webcodecamjquery.js"></script>
@@ -70,7 +72,7 @@
             var arg = {
                 resultFunction: function(result) {
 					window.location.href = result.code;
-                    $('body').append($('<li>' + result.format + ': ' + result.code + '</li>'));
+                    /*$('body').append($('<li>' + result.format + ': ' + result.code + '</li>'));*/
                 }
             };
             var decoder = $("canvas").WebCodeCamJQuery(arg).data().plugin_WebCodeCamJQuery;
@@ -82,6 +84,21 @@
             $('select').on('change', function(){
                 decoder.stop().play();
             });
+        </script>
+        
+        <script type="text/javascript">
+            var txt = "innerText" in HTMLElement.prototype ? "innerText" : "textContent";
+            var arg = {
+                resultFunction: function(result) {
+                    var aChild = document.createElement('li');
+                    /*aChild[txt] = result.format + ': ' + result.code;*/
+                    document.querySelector('body').appendChild(aChild);
+                }
+            };
+            var decoder = new WebCodeCamJS("canvas").init(arg);
+            function decodeLocalImage(){
+                decoder.decodeLocalImage();
+            }
         </script>
         
         
