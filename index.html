@@ -76,9 +76,25 @@
         <script type="text/javascript" src="js/filereader.js"></script>
         <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript" src="js/qrcodelib.js"></script>
-        <script type="text/javascript" src="js/webcodecamjs.js"></script>
-        <script type="text/javascript" src="js/webcodecamjquery.js"></script>
         
+        <script type="text/javascript" src="js/webcodecamjs.js"></script>
+        <script type="text/javascript">
+            var txt = "innerText" in HTMLElement.prototype ? "innerText" : "textContent";
+            var arg = {
+                resultFunction: function(result) {
+					window.location.href = result.code;
+                    /*var aChild = document.createElement('li');
+                    aChild[txt] = result.format + ': ' + result.code;
+                    document.querySelector('body').appendChild(aChild);*/
+                }
+            };
+            var decoder = new WebCodeCamJS("canvas").init(arg);
+            function decodeLocalImage(){
+                decoder.decodeLocalImage();
+            }
+        </script>
+        
+        <script type="text/javascript" src="js/webcodecamjquery.js"></script>
         <script type="text/javascript">
             var arg = {
                 resultFunction: function(result) {
@@ -91,12 +107,7 @@
             decoder.play();
             /*  Without visible select menu
                 decoder.buildSelectMenu(document.createElement('select'), 'environment|back').init(arg).play();
-            */
-            var decoder = new WebCodeCamJS("canvas").init(arg);
-            function decodeLocalImage(){
-                decoder.decodeLocalImage();
-            }
-			
+            */			
             $('select').on('change', function(){
                 decoder.stop().play();
             });
