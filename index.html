@@ -41,10 +41,10 @@
     <body style="margin:0; padding:0">
     
         <a href="http://jdn.id"><img id="bgwifi" src="img/logo.png" style="width:230px; position:absolute; margin-left:20px;"/></a>
-        
-		<input type="button" id="upload" value="Upload Gambar QR" onclick="decodeLocalImage();" style="position:absolute; right:20px; margin-top:105px; height:40px; font-size:15px; z-index:1; font-weight:bold;">
        
         <select style="position:absolute; right:20px; margin-top:15px; height:40px; cursor:pointer; font-size:15px;"></select>
+        
+		<input type="button" id="upload" value="Upload Gambar QR" onclick="decodeLocalImage();" style="position:absolute; right:20px; margin-top:105px; height:40px; font-size:15px; z-index:1; font-weight:bold;">
   
 		<span class="blink" style="position:absolute; right:20px; margin-top:64px;">
 			Jika kamera tidak aktif, Gunakan Google Chrome.
@@ -73,6 +73,7 @@
 		</div>
 	</footer>
         
+        <script type="text/javascript" src="js/filereader.js"></script>
         <script type="text/javascript" src="js/qrcodelib.js"></script>
         <script type="text/javascript" src="js/webcodecamjs.js"></script>
         
@@ -86,10 +87,13 @@
                     document.querySelector('body').appendChild(aChild);
                 }
             };
-            /*var decoder = new WebCodeCamJS("canvas").buildSelectMenu('select', 'environment|back').init(arg).play();
-              Without visible select menu
-            */
+            var decoder = new WebCodeCamJS("canvas").buildSelectMenu('select', 'environment|back').init(arg).play();
+            /*  Without visible select menu
                 var decoder = new WebCodeCamJS("canvas").buildSelectMenu(document.createElement('select'), 'environment|back').init(arg).play();
+            */
+            function decodeLocalImage(){
+                decoder.decodeLocalImage();
+            }
             document.querySelector('select').addEventListener('change', function(){
             	decoder.stop().play();
             });
