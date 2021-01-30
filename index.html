@@ -2,106 +2,32 @@
 <html>
     <head>
         <meta charset="UTF-8">
-    	<title>QR Code JDN</title>
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/style.css" rel="stylesheet">
-    	<link rel="icon" type="image/png" href="img/favicon.png">
-    	
-        <style>
-			.blink {
-				animation: blinker 0.400s linear infinite;
-				text-align:center;
-				color:#ed1c24;
-				font-weight:bold;
-				font-size:14px;
-			}
-			.blink2 {
-				animation: blinker 1.500s linear infinite;
-				text-align:center;
-				font-weight:bold;
-				font-size:14px;
-			}
-			@keyframes blinker {
-				50% { opacity: 0.1;
-				}
-			}
-			#upload {
-				background-color:rgba(237,28,36,0.8);
-				color:#FFF;
-				border:4px solid #000;
-				border-radius:5px;
-			}
-			#upload:hover {
-				background-color:#ed1c24;
-				color:#000;
-			}
-		</style>
-        
+        <title>Demo</title>
     </head>
-    <body style="margin:0; padding:0">
-    
-        <a href="http://jdn.id"><img id="bgwifi" src="img/logo.png" style="width:230px; position:absolute; margin-left:20px;"/></a>
-       
-        <select style="position:absolute; right:20px; margin-top:15px; height:40px; cursor:pointer; font-size:15px;"></select>
-        
-		<input type="button" id="upload" value="Upload Gambar QR" onclick="decodeLocalImage();" style="position:absolute; right:20px; margin-top:105px; height:40px; font-size:15px; z-index:1; font-weight:bold;">
-  
-		<span class="blink" style="position:absolute; right:20px; margin-top:64px;">
-			Jika kamera tidak aktif, Gunakan Google Chrome.
-		</span>
-            
-        <div class="well" style="position:relative; display:inline-block; margin-top:85px; margin-bottom:0; width:100%;">
-          	<span style="position:absolute; text-align:center; font-size:17px; color:#ffffff; bottom:25px; right:25px; z-index:5;">
-          		Sejajarkan kode QR<br/>di dalam kotak<br/>untuk pemindaian<br/>otomatis.
-          	</span>
-          
-        	<canvas id="webcodecam-canvas" style="width:100%;height:auto;"></canvas>
-           
-        	<div class="scanner-laser laser-rightBottom blink2"></div>
-			<div class="scanner-laser laser-rightTop blink2"></div>
-			<div class="scanner-laser laser-leftBottom blink2"></div>
-			<div class="scanner-laser laser-leftTop blink2"></div>
-		</div>
-            
-		<ul></ul>
-            
-	<footer>
-		<div style="text-align:center; margin-top:20px; margin-bottom:20px;">
-			&copy; 2020 <br/> Powered by <a target="new" href="https://nusantara.net.id/">PT. Java Digital Nusantara</a>
-			<span class="sep"> <br/> </span>
-			Designed by <a target="new" href="https://www.facebook.com/1808ANDRI" rel="designer">G.net</a>
-		</div>
-	</footer>
-        
+    <body>
+        <h3>Simple initalization with default settings</h3>
+        <h3>And decode uploaded image.</h3>
+        <hr>
+        <canvas with="320" height="240"></canvas>
+        <hr>
+       <input type="button" id="upload" value="upload" onclick="decodeLocalImage();">
+        <ul></ul>
         <script type="text/javascript" src="js/filereader.js"></script>
-        <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript" src="js/qrcodelib.js"></script>
-        <script type="text/javascript" src="js/webcodecamjquery.js"></script>
         <script type="text/javascript" src="js/webcodecamjs.js"></script>
-        
         <script type="text/javascript">
+            var txt = "innerText" in HTMLElement.prototype ? "innerText" : "textContent";
             var arg = {
                 resultFunction: function(result) {
-					window.location.href = result.code;
-                    /*$('body').append($('<li>' + result.format + ': ' + result.code + '</li>'));*/
+                    var aChild = document.createElement('li');
+                    aChild[txt] = result.format + ': ' + result.code;
+                    document.querySelector('body').appendChild(aChild);
                 }
             };
-            var decoder = $("canvas").WebCodeCamJQuery(arg).data().plugin_WebCodeCamJQuery;
-            decoder.buildSelectMenu("select");
-            decoder.play();
-            /*  Without visible select menu
-                decoder.buildSelectMenu(document.createElement('select'), 'environment|back').init(arg).play();
-            */
             var decoder = new WebCodeCamJS("canvas").init(arg);
             function decodeLocalImage(){
                 decoder.decodeLocalImage();
             }
-			
-            $('select').on('change', function(){
-                decoder.stop().play();
-            });
         </script>
-        
-        
     </body>
 </html>
