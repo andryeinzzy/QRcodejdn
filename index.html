@@ -91,12 +91,12 @@
             /*  Without visible select menu
                 var decoder = new WebCodeCamJS("canvas").buildSelectMenu(document.createElement('select'), 'environment|back').init(arg).play();
             */
-            function decodeLocalImage(){
-                decoder.decodeLocalImage();
-            }
             document.querySelector('select').addEventListener('change', function(){
             	decoder.stop().play();
             });
+            function decodeLocalImage(){
+                decoder.decodeLocalImage();
+            }
         </script>
         
         
