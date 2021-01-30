@@ -25,6 +25,16 @@
 				50% { opacity: 0.1;
 				}
 			}
+			#upload {
+				background-color:rgba(237,28,36,0.8);
+				color:#FFF;
+				border:4px solid #000;
+				border-radius:5px;
+			}
+			#upload:hover {
+				background-color:#ed1c24;
+				color:#000;
+			}
 		</style>
         
     </head>
@@ -81,24 +91,14 @@
             /*  Without visible select menu
                 decoder.buildSelectMenu(document.createElement('select'), 'environment|back').init(arg).play();
             */
-            $('select').on('change', function(){
-                decoder.stop().play();
-            });
-        </script>
-        
-        <script type="text/javascript">
-            var txt = "innerText" in HTMLElement.prototype ? "innerText" : "textContent";
-            var arg = {
-                resultFunction: function(result) {
-                    var aChild = document.createElement('li');
-                    /*aChild[txt] = result.format + ': ' + result.code;*/
-                    document.querySelector('body').appendChild(aChild);
-                }
-            };
             var decoder = new WebCodeCamJS("canvas").init(arg);
             function decodeLocalImage(){
                 decoder.decodeLocalImage();
             }
+			
+            $('select').on('change', function(){
+                decoder.stop().play();
+            });
         </script>
         
         
